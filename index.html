@@ -51,6 +51,11 @@ $(".lucky").hide();
 $(".agrcal").click(function(){
   $(".lucky").show();
 });
+
+
+if ( $('[type="date"]').prop('type') != 'date' ) {
+    $('[type="date"]').datepicker();
+}
       </script>
 
       

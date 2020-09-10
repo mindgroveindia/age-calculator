@@ -1,3 +1,5 @@
+
+
 function ageCalculate(){
   //document.getElementById('age').InnerHtml
 // document.getElementById("demo").InnerHtml=4+5;
