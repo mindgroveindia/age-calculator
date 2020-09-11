@@ -50,7 +50,7 @@ function ageCalculate(){
           document.getElementById("age").innerHTML = "Hi "
         
 
-            + userName+  " did you know that you where born on a Monday " + tDays + "days ago" 
+            + userName+  " did you know that you where born on a Monday " + tDays + " Days ago" 
 
       }
 
