@@ -1,0 +1,233 @@
+<style>
+    HTML CSS JSResult
+body {
+    background: #FFFFFF;
+    color: #333;
+    font-family: serif;
+    line-height: 1.5em;
+}
+
+button {
+    background: #FFF;
+    border: 1px solid #08F;
+    border-radius: 4px;
+    display: inline-block;
+    margin: 0 4px;
+    outline: 0;
+    overflow: hidden;
+    padding: 6px 16px;
+    position: relative;
+}
+
+button:focus {
+    background: #F5F5F5;
+    color: #777;
+}
+
+form {
+    text-align: center;
+}
+
+form, .box {
+    margin: 0 auto;
+    overflow: hidden;
+    padding: 0;
+    position: relative;
+}
+
+h2 {
+    letter-spacing: 1px;
+}
+
+input {
+    background: transparent;
+    border: 1px solid #08F;
+    border-radius: 5px;
+    font-size: 16px;
+    margin: 8px 10px 8px 6px;
+    overflow: hidden;
+    outline: 0;
+    padding: 6px 10px;
+}
+
+p {   
+  line-height: 1.5em;
+  letter-spacing: 1px;
+}
+
+select {
+    background: #FFF;
+    border: 1px solid #08F;
+    border-radius: 4px;
+    margin: 4px 6px;
+    outline: 0;
+    padding: 6px 8px;
+}
+
+</style>
+<section>
+  <form>
+    <h2><i>Zeller Algorithm</i></h2>
+    <div class="box">
+      <p><b>Month: </b>
+        <input type="date" name="month">
+          <option value="1">Enero</option>
+          <option value="2">Febrero</option>
+          <option value="3">Marzo</option>
+          <option value="4">Abril</option>
+          <option value="5">Mayo</option>
+          <option value="6">Junio</option>
+          <option value="7">Julio</option>
+          <option value="8">Agosto</option>
+          <option value="9">Septiembre</option>
+          <option value="10">Octubre</option>
+          <option value="11">Noviembre</option>
+          <option value="12">Diciembre</option>
+        </input>
+        <b> Day: </b>
+        <select name="day">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10</option>
+          <option value="11">11</option>
+          <option value="12">12</option>
+          <option value="13">13</option>
+          <option value="14">14</option>
+          <option value="15">15</option>
+          <option value="16">16</option>
+          <option value="17">17</option>
+          <option value="18">18</option>
+          <option value="19">19</option>
+          <option value="20">20</option>
+          <option value="21">21</option>
+          <option value="22">22</option>
+          <option value="23">23</option>
+          <option value="24">24</option>
+          <option value="25">25</option>
+          <option value="26">26</option>
+          <option value="27">27</option>
+          <option value="28">28</option>
+          <option value="29">29</option>
+          <option value="30">30</option>
+          <option value="31">31</option>
+        </select>
+        <b> Year:</b>
+        <input type="text" name="year" size="4">
+      </p>
+      <p><b>Example:</b><small> 1 November 1980 Saturday</small></p>
+      <h2><i>The day</i></h2>
+      <input type="text" name="birthday" size="15">
+    </div>
+    <div class="box">
+      <p>
+        <button type="button" value="OK" onclick="cala_day(this.form)">Ok</button>
+        <button type="reset">Reset</button>
+      </p>
+    </div>
+  </form>
+</section>
+
+<script>
+    function cala_day(form) {
+  var nMonth = parseInt(form.month.options[form.month.selectedIndex].value);
+  var nDay = parseInt(form.day.options[form.day.selectedIndex].value);
+  var nYear = parseInt(form.year.value);
+  var nDayOfWeek = cala_weekday(nMonth, nDay, nYear)
+  day_display(form, nDayOfWeek)
+}
+
+function cala_weekday(x_nMonth, x_nDay, x_nYear) {
+  if (x_nMonth >= 3) {
+    x_nMonth -= 2;
+  } else {
+    x_nMonth += 10;
+  }
+  if ((x_nMonth == 11) || (x_nMonth == 12)) {
+    x_nYear--;
+  }
+  var nCentNum = parseInt(x_nYear / 100);
+  var nDYearNum = x_nYear % 100;
+  var g = parseInt(2.6 * x_nMonth - .2);
+
+  g += parseInt(x_nDay + nDYearNum);
+  g += nDYearNum / 4;
+  g = parseInt(g);
+  g += parseInt(nCentNum / 4);
+  g -= parseInt(2 * nCentNum);
+  g %= 7;
+
+  if (x_nYear >= 1700 && x_nYear <= 1751) {
+    g -= 3;
+  } else {
+    if (x_nYear <= 1699) {
+      g -= 4;
+    }
+  }
+  if (g < 0) {
+    g += 7;
+  }
+  return g;
+}
+
+function day_display(form, x_nDayOfWeek) {
+
+  if (x_nDayOfWeek == 0) {
+    form.birthday.value = "Sunday";
+    return;
+  }
+  if (x_nDayOfWeek == 1) {
+    form.birthday.value = "Monday";
+    return;
+  }
+  if (x_nDayOfWeek == 2) {
+    form.birthday.value = "Tuesday";
+    return;
+  }
+  if (x_nDayOfWeek == 3) {
+    form.birthday.value = "Wednesday";
+    return;
+  }
+  if (x_nDayOfWeek == 4) {
+    form.birthday.value = "Thursday";
+    return;
+  }
+  if (x_nDayOfWeek == 5) {
+    form.birthday.value = "Friday";
+    return;
+  }
+  if (x_nDayOfWeek == 6) {
+    form.birthday.value = "Saturday";
+    return;
+  }
+  form.birthday.value = "Error, 'Year'.";
+}
+
+browser_name = navigator.appName;
+browser_version = parseFloat(navigator.appVersion);
+if (browser_name == "Netscape" && browser_version >= 3.0) {
+  roll = 'true';
+} else if (browser_name == "Microsoft Internet Explorer" && browser_version >= 3.0) {
+  roll = 'true';
+} else {
+  roll = 'false';
+}
+
+function msover(img, ref) {
+  if (roll == 'true') {
+    document.images[img].src = ref;
+  }
+}
+
+function msout(img, ref) {
+  if (roll == 'true') {
+    document.images[img].src = ref;
+  }
+}
+</script>
